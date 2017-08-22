@@ -1,0 +1,298 @@
+Author - Raymond Feng
+Disjoint Sets
+B-Level 
+4. This would just be creating an N item WQUUF, then only unioning all other items to only one central item. This creates a maximally shallow tree representation of the WQUUF, and so the M_u and M_c would take constant time. 
+5. This does not work. The problem is id[p] could be modified before the entire array traversal ends, and thus any later items that equal the ORIGINAL value of id[p] no longer satisfy the if conditional, and would not be changed to id[q]. 
+A-level
+1. Yes, the algorithm would still work. But because id[find(p)] is set to q instead of q's "root", then the tree height could be increased when it otherwise would have remained the same, decreasing the efficiency of the algorithm.
+2. I believe that using tree height as tree size would still maintain the lgN bound for each union and connect call. However, because it is possible for the root of a tree with more elements to get "parented" to a root of a tree with less elements but of the same height, making average tree height greater in general for heighted quick union. Thus, the heighted quick union "union" and "connected" calls would, on average, take longer than that of weighted quick union. 
+3. (From lecture)
+private int find(int p) {
+	if (p == parent[p]) {
+    	return p;
+	} else {
+    	parent[p] = find(parent[p]);
+    	return parent[p];
+	}
+} 
+
+BST
+C-level
+1. LgN, N. 
+2. Perhaps there is no algorithm that is better than the O(n) worst case for BST for shuffling n inputs, so it wouldn't be worth it. 
+3. HCSAERX, HCSAEXR
+		H
+	    /       \
+	C		S
+      /    \          /    \
+   A	     E      R        X
+4.		
+		R
+	    /       \
+	C		S
+      /    \               \
+   A	     E               X
+B-Level
+1. a,b,d
+2. Colors. 
+3. Unless you define a data type that carries no information, I believe all data types can be compared in one way or another based on their individual qualities. 
+4. It is impossible for the predecessor or successor to have two children. If that were the case, then for the predecessor, its right child would be closer to the root, meaning that the predecessor is not actually the predecessor. For the successor, its left child would be closer to the root, meaning that the successor is not actually the successor. Thus, it is impossible for either the successor or the predecessor to have two children, meaning that they both must have either zero or one children. 
+5. No. (Counterexample stolen from: http://www.cs.cornell.edu/courses/cs409/2000SP/Homework/hw03Solution.htm)
+Delete A, then B	
+  A
+ / \
+B   D
+   /
+  C
+  C
+ / \
+B   D
+C
+ \
+  D
+Delete B, then A	
+  A
+ / \
+B   D
+   /
+  C
+A
+ \
+  D
+ /
+C
+  D
+ /
+C
+A+ Level
+1. Solution: http://inst.eecs.berkeley.edu/~cs61b/fa13/samples/test2-soln.pdf
+
+Balanced BST
+C Level
+1. 		
+		D
+	B		F
+A	      C     E          G
+2. 
+		10 20 
+5 7             12 13               21 22
+The height is log_3(N) because each increase in height is multiplying the number of nodes by 3. 
+3. At most two compares in the worst case. 
+B Level
+1. This would just be a normal BST because there are no 3 nodes ... ?
+2. Yes and yes, there is a one to one correspondance. 
+3. Worst case ~log_2(N) Best case ~log_5(N)
+4. 1. 2Log_2(N)
+5. ~2Log_2(N), this would be a tree with a single path with alternating red black nodes.
+A-Level
+1. Incomplete
+2. Incomplete
+3. Coursera missing
+  
+Hashing
+C-Level
+1. Yes, but all keys would hash to the same index, resulting in reduced efficiency. 
+B-Level
+1. ???
+A-Level
+1. If both R and M were 31, then because in each iteration hashCode *= 31 is gauranteed to set hashCode to a value that is a multiple of 31. For multiple iterations, for instance on iterations 2,3, or 4, then hashCode is gauranteed to be a multiple of 31^2, 31^3, and 31^4. Then, if the last x.get(i).hashCode() happens to be a multiple of 31, then hashCode % M would be 0, which is not good. 
+1. (Part 2 I guess) To select the index of the hashCode in the Hash Table, you would be taking hashCode % (Power of 2). Say for example your hashCode is 100101 in binary. Then, if you took 100101 % 2^3, you would get 101. When taking the modulus 2^p of a binary number, you take the first p digits starting from the right. Thus, if p is less than the length of your hashCode, you are "wasting" length-p of your bits, possibly creating ambiguity. 
+2. I claim that the hash function in problem 1 with R=256 and M=255 returns the addition of the hashes of each individual letter, and then takes that sum modulo 255. Suppose I have string AB. Then in the first iteration, we have: hashCode = A%M. Then, in the second iteration, we have: [(hashCode(A)%M)*(M+1)+hashCode(B)]%M. For some integer k, we know that:
+[(hashCode(A)%M)*(M+1)+hashCode(B)]%M = [(hashCode(A)-kM)*(M+1)+hashCode(B)]%M
+=[hashCode(A)*(M+1)-kM*(M+1)+hashCode(B)]%M
+=[hashCode(A)*M+hashCode(A)-kM*(M+1)+hashCode(B)]%M
+Because any multiple of M added to a number x does not change the value of x mod M, we can reduce:
+=[hashCode(A)+hashCode(B)]%M
+Using induction, you can generalize this result to a string of any length. Because addition is commutative, strings with the same letters will hash to the same code, resulting in ambiguity. 3
+3. "fg", "gG".
+4. http://inst.eecs.berkeley.edu/~cs61b/fa13/samples/test2-soln.pdf part c is missing. 
+5. If hashCode starts at 1, then we have ((M+1+hashCode(A))%M)*(M+1) which is not easily simplified, resulting in a hashier hashCode that will not collide as often. 
+A+-Level
+1. Take your string X, and choose any two letters. Say I have "hug", and I choose the two letters "ug". Then, take the first letter, and change it to the next alphabetic letter. Then, take the second letter, and change it to the next alphabetic letter, and capitalize it. "hug" --> "hvG". 
+This works because of the ASCII spacing between capital and lowercase letters. The hashCode calculates by: s[0]*31^(n-1) + s[1]*31^(n-2) + ... + s[n-1]. n is the length of the String. Suppose our "ug" was chosen at any arbitrary index j. Then, hashCode=s[j]*31^(n-j-1)+s[j+1]*31^(n-j-2). By the transformation stated above:
+newHashCode=(s[j]+1)*31^(n-j-1)+(s[j+1]-31)*31^(n-j-2)
+=(s[j])*31^(n-j-1)+31^(n-j-1)+(s[j+1])*31^(n-j-2)-31*31^(n-j-2)
+=(s[j])*31^(n-j-1)+31^(n-j-1)+(s[j+1])*31^(n-j-2)-31^(n-j-1)
+the second and last terms cancel out nicely. 
+=(s[j])*31^(n-j-1)+(s[j+1])*31^(n-j-2)
+=oldHashCode \qed
+
+Heaps and Priority Queues
+C-Level
+1. Yes. All children of all nodes are larger than the nodes themselves. 
+2. This is ineffective, because deleting the maximum would result in having to update the stack to find the new maximum, which can be costly. 
+4. To make the arithmetic for finding indices slightly cleaner. 
+B-Level
+1. 2nd cannot appear on any level other than the second. 3rd can appear on third or fourth level. 4th can appear on third fourth or fifth level.
+2. Parents: pq[(k-1)/2] Children: pq[2k+1], pq[2k+2]
+3. Stack: For implementing a stack, the push method would just be inserting an element into the PQ, but setting its priority based on the size of the PQ. Then, pop would be removing the max, and so the most recently inserted element is removed. Queue: A queue would be similar, but when inserting an element, make its priority the negative of the pq size at time of insertion. Thus, just remove the max to remove an element so that the earlier elements get removed first.
+4. Could you just make a second PQ that has the negative priorities of all the elements. Then, the min() method would simply be  getting the root of your second PQ. 
+5. 1: 2 2: 2+3=5 3: 2+3+4=9
+			70
+	50				30
+     5         7                  20         27
+1       3     4     6          11    15     13    21
+A-Level
+1. Define a root. This root stores the median, and has a minPQ as well as a maxPQ. Every time an item is inserted, if the item is less than the median, it goes to the maxPQ. If the item is greater than the median, it goes to the minPQ. After every insertion, if there is an imbalance between the two sizes of the PQ, then swap the median into whichever PQ is smaller and take the min/max from the larger PQ and set it to be the new median. 
+2. This implementation is similar to the one for problem 1. Have two PQ's, a minPQ and a maxPQ, also keep track of the median. For the first insertion into our empty data type, make that first element our median. Keep track of the size. Then, each subsequent element will be placed with respect to the median. If the new element is larger than the median, place it in the maxPQ. If the new element is lesser than the median, place it in the minPQ. After insertion, increment the size by one. If the size is an odd number, check if the two PQ's have the same size. If not, balance the sizes by taking the max/min element from the larger PQ, setting that to the median, and then inserting the median into the PQ with the smaller size, thus making the two PQ's have the same size. Remove max and remove min is as simple as popping off the min/max of the respective PQ's, and then shifting elements as mentioned previously to make the PQ's the same size on odd sizes. 
+
+Trees
+A-Level
+2. Is this just because if we find an element not in the range, we use one compare, and only have to explore one side? So if all elements along our path does not match the range, we would only have to do lgN compares. However, for each match, we have to check both sides of the node, resulting in one extra compare.
+3. Our function f(x,y)=z is a mapping from R^2 --> R, which I suppose will lose some information about the original coordinate. For example, with the original coordinates we could tell the position of one node with respect to another node. After applying f on our coordinate, we lose that information.  
+
+Graphs Intro
+B-Level
+1. This is because adj takes constant time, and there are V adj calls for the V verticies in the graph. Also, we take into account the E prints for the E total edges. V+E.
+2. O(N^2).
+3. If the graph has a leaf, then we are done, because the removal of that leaf, by definition of leaf, cannot sever connections with any vertice except for the one it was originally connected to. And because the original graph is connected, the removal of the leaf also results in a connected graph. In the other case where the graph has no leaves, then it must be the case that all vertices are parts of a cycle. So removing any vertice is okay, because the edges removed as a result of the vertex being removed must have been part of a cycle, and so removing it cannot disconnect the graph. To implement this algorithm, do DFS on the graph, and in the first case of meeting a leaf, that is the vertex to be removed. This can easily be checked by whatever graph representation that is used, as leaves only have one adjacent vertex. Otherwise, if no such vertex is found, just randomly choose any vertex to delete because the graph consists of cycles only.
+A-Level
+1. Statement: Black-white colorable <--> No odd length cycle.
+Black-white colorable --> No odd length cycle AND No odd length cycle --> Black-white colorable. 
+The first statement is simple to prove using the contrapositive. Odd length cycles --> Not BW Colorable. To simplify this case, we look at an arbitrary graph. Remove the non cycle vertices because they are irrelevant(just alternate colors, and it is clear that it is impossible for them to violate color rule). Now we are left with cycles only, and by our assumption, there exists at least one odd cycle. It is impossible for this odd cycle to satisfy the rule because going around the cycle, starting from, say, a black vertex, returning to the same black vertex results in an ODD number of color swaps as mandated by the rule. This means that our black vertex must also be white. This is a contradiction, proving the contrapositive. The second statement can be proven by again removing all non cycle vertices, as it is impossible for them to violate the color rule. Then, we are left with, by assumption, only even cycles. It is impossible for these even cycles to violate the color rule. It is apparent that individual even cycles by themselves cannot violate the rule. Moreover, any intersecting cycles are also legal because the intersection MUST occur along different colored vertices. If they occured along same colored vertices, they would create an odd cycle, violating our assumption. So even cycles individually, as well as intersecting together, cannot violate the color rule, thus proving the second statement. Having proven both statements, the original statment is proven. \qed 
+
+Graph Traversals
+C-Level
+4. Does this tree tell us anything about non-source distances? I don't think so...
+A-Level
+1. Yes, there do exists topological orders that cannot result from a DFS based algorithm. For example, if we interpret our DAG specifically as a tree:
+		A
+	B		C
+     E     F         G     H
+If we do DFS and go into B, and then choose E, there is no way to directly choose C because DFS mandates that we go to F first.
+2. 
+findTour(start, marked[], current, path[])
+    if start == current AND all vertices marked
+        return path
+    else
+	for neighbor n of current
+	    marked[n] = true	
+	    path.add(n)
+	    return findTour(start, marked[], n, path)
+3. Similar to problem 1, I believe that although F and G are the same distance from A, they cannot be swapped freely because they are held in place by the order in which B and C are called. For example, say B is called and then F is called, G cannot be called yet becasue C has not yet been called. 
+4. I have no idea.
+Just for fun
+1. Yeah I'm good thanks tho.
+
+Shortest Path's and Dijkstra's Algorithm
+C-Level
+1. N/A
+2. Wouldn't this just be taking the edgeToArray, and starting at w, and keep back tracking until you reach 0. Then, simultaneously, at every step you would add whatever value distTo is for the current vertex. 
+3. http://www.cs.princeton.edu/courses/archive/spring15/cos226/exams/fin-f09-sol.pdf
+4. True
+B-Level
+1. http://www.cs.princeton.edu/courses/archive/spring15/cos226/exams/fin-f11-sol.pdf Wait. I do not mean to bag on Hug's judgement, but am I missing something when he says "great question"? Although a decent question, I did not see why it was "great". It just felt like a normal exam question. Is there some insight that I'm not seeing?
+2. http://www.cs.princeton.edu/courses/archive/spring15/cos226/exams/fin-f12-sol.pdf
+3. ("Inspired" by https://cstheory.stackexchange.com/questions/16593/algorithm-to-find-shortest-path-from-a-set-of-nodes-to-another-set-of-nodes) Create a new vertex A and connect it to all the nodes in the first set. Then create a new vertex B and connect it to all the nodes in the second set. Then, find the shortest path from A to B. 
+A-Level
+1. http://www.cs.princeton.edu/courses/archive/fall13/cos226/exams/fin-s13-sol.pdf
+2. Would this just be the complete graph on V vertices? But then again, there are differences depending on where you start, so I'm not sure exactly how worst case is defined here.
+3. http://datastructur.es/sp17/materials/discussion/discussion11sol.pdf I think the main problem here was that they visited D prematurely due to their mixing up of the if and for loop. Thus D is prematurely marked as discovered. 
+A+-Level
+1. I would run a modified Dijkstra's algorithm. This algorithm would be modified as follows. Dijkstra's runs as normal, but I would also keep a Boolean array that is the same length as the number of verticies in the graph. Then, as Dijkstra's runs as usual, except when it goes for edge relaxation, it will only allow for the edge to be relaxed if the new edge to be added is accordingly increasing or decreasing. This is found by looking at the Boolean array, which keeps track of whether a node is in a path that is increasing or decreasing. Then, the new edge in question is compared with the previous edge, and then tested to see if it satisfies the property of increasing or decreasing. Only if it agrees, does it get relaxed. Furthermore, the Boolean array invariant is maintained starting from the edge step that is one removed from the source, as this is when it is decided if a node will be part of either a increasing or decreasing path. 
+2. I believe this provides a solution: http://www.sciencedirect.com/science/article/pii/0167637789900655, but the algorithm assumes an undirected graph with non-negative weights, so I'm not sure if it satisfies the question.	 
+A++-Level
+1. http://www.cs.princeton.edu/courses/archive/fall13/cos226/exams/fin-f13-sol.pdf 
+
+Minimum Spanning Trees, Kruskal's, Prim's
+C-Level
+1. N/A
+2. https://www.cs.princeton.edu/courses/archive/spr10/cos226/exams/fin-s08-sol.pdf
+3. No, not without modification at least. This was mentioned in the 4.3 Q and A section of the textbook. They call it the "minimum cost aborescence problem". 
+4. True. The only place where the edge weight is used is for comparisons between edges. Adding and multiplying by the same constant all maintain the relative order of all edges. 
+B-Level
+1. Claim: Given any cycle in an edge weighted graph where all edge weights are distinct, then the edge of maximum weight in the cycle does not belong to the MST of the graph. Let us suppose that this edge of maximum weight, say edge A, does indeed belong in the MST. Then because edge A belongs in a cycle, then the vertex that it connects has another option to choose instead of A, say B, that is also in the cycle. B must have a lower weight than A, and thus the MST that includes A is not actually a MST. Thus, the cycle property must be true. 
+2. https://www.cs.princeton.edu/courses/archive/spr10/cos226/exams/fin-f09-sol.pdf
+3. https://www.cs.princeton.edu/courses/archive/fall12/cos226/exams/fin-f12-sol.pdf
+4. 
+-In any graph, the shortest edge must belong to the MST. Isolate any vertex that is touching that shortest edge, and by the cut property, that edge must exist in the MST. -In any graph, the longest edge COULD belong to the MST. If for example there was a vertex that is only connected to the graph through that longest edge, then that longest edge must be included, by necessity, and by definition of MS(panning)T. 
+-In any graph, the shortest edge in a cycle must be in the MST. This is not true. Counterexample:
+	A
+    /       \
+   B    -    C
+   |         |
+   D    -    E
+A-B: 6
+A-C: 7
+B-C: 5
+B-D: 2
+C-E: 4
+D-E: 3
+A slicker way to prove this is as follows(credit to Andy Zhang of 8D36A): Suppose we have two cycles A and B that intersect at one edge. Suppose that in A, the heaviest edge is a, and in B, the lightest edge is b. By the cycle property, a cannot be in the MST. However, let's make it the case that a=b. Then, the lightest edge in B is not in the MST, proving our claim that the lightest edge in a cycle is not necessarily in the MST. 
+5. True. Any possible edge in consideration during Kruskal's must have been larger in weight than all of the edges before it. If the edge in question were closer to the vertex than any vertex in that vertice's subtree, that would be a violation of Kruskal's because the edges were not looked at in increasing order.
+6. False. It could be that during later execution of the algorithm, there is an even smaller edge that comes along to connect the two components via a different node. 
+7. http://datastructur.es/sp15/materials/exams/fin-f14.pdf
+8. http://datastructur.es/sp15/materials/exams/fin-f14.pdf
+A-Level
+1. N/A
+2. http://www.cs.princeton.edu/courses/archive/fall13/cos226/exams/fin-s08-sol.pdf
+3. ("Inspired" from https://stackoverflow.com/questions/15720155/find-all-critical-edges-of-an-mst) Perform Kruskal's algorithm as usual, but when a cycle is encountered, instead of skipping the edge because it is ineligible, check to see if there are edges of the same weight within the cycle. If there are, then that edge is not a critical edge. If so, then the edge is a critical edge.
+
+Sorting 1
+B-Level
+1. Insertion sort best case: already sorted. Insertion sort worst case: reverse sorted
+2. In a reversed array, I would expect insertion sort to run faster, because whilst selection sort needs to find the minimum item, insertion sort "takes advantage" of the fact that the minimum item is always the first item in an unsorted array in a reversed array. 
+
+Sorting 2
+C-Level
+1. When picking the leftmost item as pivot, a reverse sorted array would cause quicksort to always choose the largest item in the unsorted array to be the pivot, and all the other items would go to the left of the pivot. Then, the pattern repeats, and there would have to be n-1 + n-2 + ... + 1 = n^2 total swaps. 
+B-Level
+1. Quicksort recursive call stack depth. Worst case: n-1. This is when the pivot is the worst possible, the largest or smallest element, each time. Best case: 1. This is when the pivot is chosen such that the left array is a single element. Then the call stack ends immediately, and would never go deeper than 1. Average case: log_2(n).
+2. In the worst case, we choose the worst pivot and everything is larger or smaller than the pivot. If this happens every time, then there is a stack depth of 7 at max and each stack has to do theta(n) work. 
+A+-Level
+1. I tried reading the paper that was linked, didn't really understand it. 
+
+Sorting 3
+C-Level
+1. Solution doesn't seem to be online. a. YYYN b. NNYY c. NNNY
+2. Arrays.sort uses quicksort, which is not stable. So sorting objects with an unstable sort is problematic. However, primitives are indistinguishable when only their values are in question, so an unstable sort is fine. 
+B-Level
+1. http://www.cs.princeton.edu/courses/archive/fall13/cos226/exams/mid-f13-sol.pdf
+2. Link is broken, and couldn't find the Fall 2014 Final anywhere. 	
+A-Level
+1. http://www.cs.princeton.edu/courses/archive/spr13/cos226/exams/mid-s13-sol.pdf
+2. I think it is because of the overhead. 
+3. Well then at the last step, instead of doing the comparisons of the left and right subarrays, just insert the left, then the right. I don't think this would be that much faster, it only saves n/2 comparisons. 
+
+Sorting 4: Sorting Bounds
+C-Level
+1. This was in the last study guide. 
+B-Level
+1. ...cool, got it!
+2. This was in a previous study guide.
+3. Solutions doesn't seem to be online. 
+4 uh...
+A-Level
+1. First there would be a binary tree of depth 3 to find the smallest element of the four. Then, at each of the final leaves would be the start of a tree for a decision tree analogous to puppy, dog, cat, where the three animals compared are the three that are not the smallest.  
+2. This was in another study guide.
+
+Radix Sort
+C-Level
+1. n/a
+2. For alphabet size n and word length w. LSD best case: NW worst case: NW. MSD best case: N worst case: W. 
+3. http://www.cs.princeton.edu/courses/archive/spring15/cos226/exams/fin-s12-sol.pdf
+B-Level
+1. N characters.  
+2. Long random strings: comparison. Long similar strings: radix. 
+3. I think comparison sort would be faster because comparing ints is constant time. 
+
+Tries
+C-level
+1. Not available
+2. http://www.cs.princeton.edu/courses/archive/spring15/cos226/exams/fin-s08-sol.pdf
+3. http://www.cs.princeton.edu/courses/archive/spring15/cos226/exams/fin-f11-sol.pdf
+4. http://www.cs.princeton.edu/courses/archive/spring15/cos226/exams/fin-f12-sol.pdf
+5. http://imgur.com/7gRJAQG
+B-Level
+1. Trie Search: theta(1+N) TST Search: theta(RN)
+2. http://www.cs.princeton.edu/courses/archive/spring15/cos226/exams/fin-f09-sol.pdf
+3. http://www.cs.princeton.edu/courses/archive/spring15/cos226/exams/fin-s12-sol.pdf
+4. http://www.cs.princeton.edu/courses/archive/fall13/cos226/exams/fin-f13-sol.pdf
+5. An input like ABCDEFG... would make a TST nothing more than a singly linked list, leading to poor performance. 
+6. True. I believe that construction of an R-way trie involves array accesses, less so character comparisons. Thus it must be true that R-way trie construction involves less character comparisons than a LLRB.
+7. True. Again, construction of an R-way trie involves array accesses, whereas a hash function should access all of a string's characters. 
+A-Level
+1. log_2(R)
+2. Is part of this question missing? Not sure I understand the question, but for sure the Hash Map would need an array as well, one for each of its buckets. TST could work, and similarly BST could work as well. All of them decrease the amount of memory needed. 
+3. Assuming that R is alphabet size, and N is average key length. HashMap: Best case: theta(N) Worst case: theta(NR) TreeMap: Best case: theta(N) Worst case: theta(Nlog_2(R)) TST: Best case: theta(N) Worst case(assuming TST is not well balanced): theta(NR)
+4. Answers not online. (I couldn't find them)  
