@@ -1,4 +1,5 @@
 Author - Raymond Feng
+Links to guides: http://datastructur.es/sp17/
 Disjoint Sets
 B-Level 
 4. This would just be creating an N item WQUUF, then only unioning all other items to only one central item. This creates a maximally shallow tree representation of the WQUUF, and so the M_u and M_c would take constant time. 
