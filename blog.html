@@ -7,13 +7,13 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
 <style>
-body,h1,h2,h3,h4,h5 {font-family: "Times New Roman", sans-serif}
+body,h1,h2,h3,h4,h5 {font-family: "Ariel", sans-serif}
 </style>
 <body class="w3-light-grey">
 
 <!-- w3-content defines a container for fixed size centered content, 
 and is wrapped around the whole page content, except for the footer in this example -->
-<div class="w3-content" style="max-width:1400px">
+<div class="w3-content" style="max-width:1200px">
 
 <!-- Header -->
 <header class="w3-container w3-center w3-padding-32"> 
@@ -30,12 +30,30 @@ and is wrapped around the whole page content, except for the footer in this exam
     <img src="socp.png" style="width:10%">
     <div class="w3-container">
       <h3><b>Geometry of SOCP</b></h3>
-      <h5>What is a second order cone?, <span class="w3-opacity">November 7, 2018</span></h5>
+      <h5><span class="w3-opacity">November 7, 2018</span></h5>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      <h5>Motivation</h5>
       Second Order Cone Programming is a powerful tool. This convex optimization problem has the form:
-      <p>
-        $$\text{min}_{x \in \mathbb{R}^n}$$
-      </p>
+      $$\text{min}_{x \in \mathbb{R}^n} c^Tx \\ 
+      \text{s.t. } \|A_ix+b_i\|_2 \leq c_i^Tx+d_i$$
+      There are many optimization problems that can be reduced to this general form, but the punchline is, we now allow for constraints involving the norm of $x$, a step up from the linear constraints that we required in LPs, and QPs. However, we have QCQPs, which have the form:
+      $$\text{min}_{x \in \mathbb{R}^n} x^TH_0x+2c_0^Tx+d_0 \\ 
+      \text{s.t. } x^TH_ix+2c_i^Tx+d_i \leq 0 \\
+      x^TH_jx+2c_j^Tx+d_j = 0$$
+      Can't we just square the inequality constraint in our SOCP, such that it can be massaged into a QCQP? This is not the case, because in general, it is invalid to square constraints of the form $\|x\| \leq k$. 
+      <h5>Cones</h5>
+      What is a cone? The definition of a cone is any set $\mathcal{S}$ that satisfies the property that $s \in \mathcal{S} \Rightarrow \alpha s \in \mathcal{S}, \alpha \geq 0$.
+      We mathematically define an $(n+1)$ dimensional Second Order Cone as follows:
+      $$\mathcal{K}_n=\{(x,t),x \in \mathbb{R}^n, t \in \mathbb{R}: \|x\|_2 \leq t\}$$
+      Another equivalent definition of the $(n+1)$ second order cone is the intersection of an infinite number of half spaces:
+      $$\mathcal{k}_n=\bigcap_{u:\|u\| \leq 1}\{(x,t), x \in \mathbb{R}^n, t \in \mathbb{R} : x^Tu \leq t\}$$
+      Now, how do we make sense of this? Let is start with the "norm cone", which is a cone with respect to a norm $\|*\|$:
+      $$\mathcal{C}=\{(x,t) | \|x\| \leq t\} \subseteq \mathcal{R}^{n+1}$$ 
     </div>
 
     <div class="w3-container">
@@ -51,7 +69,7 @@ and is wrapped around the whole page content, except for the footer in this exam
     <img src="cog.png" style="width:10%">
     <div class="w3-container">
       <h3><b>A Lesson in Practicality</b></h3>
-      <h5>A story of my impracticality, <span class="w3-opacity">November 7, 2018</span></h5>
+      <h5><span class="w3-opacity">November 7, 2018</span></h5>
     </div>
 
     <div class="w3-container">
