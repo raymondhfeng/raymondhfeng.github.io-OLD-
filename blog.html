@@ -28,6 +28,88 @@ and is wrapped around the whole page content, except for the footer in this exam
 
 <!-- Blog entries -->
 <div class="w3-col l8 s12">
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="lock_pic.png" style="width:10%">
+    <div class="w3-container">
+      <h3><b>Cybersecurity Interview Questions</b></h3>
+      <h5><span class="w3-opacity">February 13, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']], 
+        processEnvironments: false
+      }
+      });
+      </script>
+
+      <ul>
+        <li>
+          Can you explain how confidentiality, integrity, and availability relate to software security vulnerabilities?
+        </li>
+          <ul>
+            <li>
+              These three concepts are central to cybersecurity, and is known as the AIC triad. These three will guide an organization in how it handles information security. Confidentiality limits the access of information, integrity ensures that the information is trustworth and accurate, and availability is the consistent reliable access of this information by authorized people. 
+            </li>
+            <ul>
+              <li>
+                Confidentiality is privacy. We need to ensure that only authorized people get access to data, and that data is categorized into the impact that a compromise of the data would have. To that end, we would use social engineering, strong passwords. Encryption, two factor authentication, biometric authentication, key fobs, soft tokens, air gapped computers, hard copies only. 
+              </li>
+              <li>
+                Integrity involves maintaining the consistency, accuracy, and trustworthiness of data over its entire life cycle. Data must not be altered during transit, especially by malicious actors. File permissions, access control, and version controls are all means to this end. Version control, cryptographic checksums are to ensure that chance events such as EMP and server crashes are detected and accounted for. Backups are redundancies are used to limit the adverse effect of such events.
+              </li>
+              <li>
+                Availability is maintained by keeping hardware up to date, performing regular inspections, and ensure there are no software concurrency issues. All software updates should be current. Bandwidth and bottleneck reduction are pinnnacle. Redundancy, failover, RAID, and high-availability clusters can help mitigate adverse effects. Firewalls and proxy servers can defend against DoS attacks. 
+              </li>
+            </ul>
+            <li>
+              Big data, such as when Edward Snowden revealed that the federal government was tracking American's personal information. IoT, because of the gathering of data from almost anywhere, can be conglomerated to reveal sensitive information. IoT networks can be hacked into becoming a botnet. 
+            </li>
+          </ul>
+        <li>What is the same origin policy? What does it protect against in web browsers?</li>
+        <ul>
+          <li>
+            The domain of the HTML page defines all elements on it. When resources from different domains are allowed to modify the current DOM tree and access the current site, then that would be unsafe. A resource an only access another pages resources if they both come from the same origin. 
+          </li>
+        </ul>
+        <li>What is cross-site scripting (XSS)? Why is it useful for attackers? How can a web application defend against it?</li>
+        <ul>
+          <li>
+            XSS is the injection of JS code into another website, so that when loaded, Same Origin Policy will not detect that it came from the same domain, and allow for the script complete access to all resources. To protect against this, we need to sanitize inputs. This restricts what resources can be accessed from scripts. 
+          </li>
+        </ul>
+        <li>What is cross-site request forgery (CSRF)? Why is it useful for attackers? How can a web application defend against it?</li>
+        <ul>
+          <li>
+            CSRF happens in authenticated sessions when the server trusts the user/browser, while XSS doesn't need an authenticated session and only requries that the website does not validate and escape input. For example, if we are logged into a banking site while surfing Facebook, and accidentally click a malicious link that does a bank transfer, the server will think that the request was valid. However, to solve this, the web server could ask for all requests to append a supplied token to the end of all requests. 
+          </li>
+        </ul>
+        <li>Are black lists or white lists preferential?</li>
+        <ul>
+          <li>
+            White lists are preferential, as they are less resource intensive than black lists. Furthermore, it is better to have the default be not allowing for access. 
+          </li>
+        </ul>
+        <li>How can a security team help developers write secure code?</li>
+        <ul>
+          <li>
+            Open and established security mechanisms should be used, do not reinvent the wheel! The underlying mechanism of a system should be kept as simple as possible, and designs should be modularized. Complete mediation ensures that each access to every process must be authenticated first. Fail safe defaults ensures that by default, access is restricted. Separation of priviledge tells us that two requirements or more must be satisfied in order for access to be granted. Least priviledge tells us that we should give each part of the software the most restricted set of priviledges possible. Least common mechanism tells us that tools common to more than one program should not be shared. Psychological acceptability tells us that easy to use mechanisms that are easy to accept will be safer. Complementary security and defense in depth tells us to have multiple different contingencies to support not allow for a single failure to compromise the entire system. 
+          </li>
+        </ul>
+        <li>What kinds of security activities can a security team undertake with a development team? What are the pros and cons of each? (ex: penetration testing, threat modeling, etc..)</li>
+        <ul>
+          <li>
+            Yeah I don't really know this one. 
+          </li>
+        </ul>
+      </ul>
+
+    <p><button onclick="location.href='cybersecurity.html'" class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+    </div>
+
+  </div>
+
   <div class="w3-card-4 w3-margin w3-white">
     <img src="socp.png" style="width:10%">
     <div class="w3-container">
@@ -91,14 +173,6 @@ and is wrapped around the whole page content, except for the footer in this exam
       Optimization Models by Calafiore and El Ghaoui, and Convex Optimization by Stephen Boyd.
 
       <p><button onclick="location.href='socp.html'" class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
-        
-      
-    </div>
-
-    <div class="w3-container">
-      <p>
-
-      </p>
     </div>
   </div>
 
