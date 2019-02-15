@@ -27,25 +27,174 @@ and is wrapped around the whole page content, except for the footer in this exam
 
 <!-- Blog entries -->
 <div class="w3-col l8 s12">
+
   <div class="w3-card-4 w3-margin w3-white">
+    <img src="git.png" style="width:10%">
     <div class="w3-container">
-      <h3><b>Furst Entry</b></h3>
-      <h5><span class="w3-opacity">February 9th, 2019 - Present</span></h5>
+      <h3><b>Cloning the Git Repo, Looking at the Code</b></h3>
+      <h5><span class="w3-opacity">November 19, 2018</span></h5>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
       <script type="text/x-mathjax-config">
       MathJax.Hub.Config({
       tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
       });
       </script>
-      <h4>February 9th, 2019, Reading fastMRI Paper</h4>
-      $$y = mx + b$$
       
+      <ul>
+        <li>Cloned the GitHub repo</li>
+        <li>Applied for dataset access</li>
+        <li>This smallest single coil test is 80GB...how do I do this...</li>
+        <li>Downloading singlecoil_test.tar...eta 2 hours</li>
+        <li>Looking through FAIR code</li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+      <p><button onclick="location.href='socp.html'" class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
     </div>
+  </div>
 
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="nyu.png" style="width:10%">
     <div class="w3-container">
-      <p>
+      <h3><b>Reading fastMRI Paper</b></h3>
+      <h5><span class="w3-opacity">February 13th, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      <ul>
+        <li>
+          Want to speed up MRI to make patient experience better, cheaper. 
+        </li>
+        <li>
+          Hardware, compressed sensing, software, parallel imaging, ML all make MRI faster. 
+        </li>
+        <li>
+          One issue is that there is not a unified single large dataset! Can't reproduce results. 
+        </li>
+        <li>
+          1594 volumes, 56987 slices. 10,000 knee examinations, 1.2 million slices. 
+        </li>
+        <li>
+          Direct vs indirect imaging. MR is an indirect technique. Instead of reading spatial measurements, takes phase and frequency measurements. 
+        </li>
+        <li>
+          Magnetic field varies with time and space, the body the produces a response, the reciever coil measures it. 
+        </li>
+        <li>
+          Imaged body represented by Multidimensional Fourier Space known as k-space. 
+        </li>
+        <li>
+          $\hat{m} = \mathcal{F}^{-1}(y)$ Is known as the inverse Fourier Transform. $\hat{m}$ is the noise corrupted estimate of true image $m$. 
+        </li>
+        <li>
+          Partial Solution: Lower maximum frequency, but results in lower spatial resolution. Omit some k-space samples within a certain maximum frequency range, but this results in aliasing artifacts. Need to use reconstruction techniques in order to remove artifacts. 
+        </li>
+        <li>
+          Parallel MR Imaging: multiple receiver coils, each producing different k-space measurement matrix. Each coil measures the different MR signal from different regions. 
+        </li>
+        <li>
+          A mouthful: Each coil measures Fourier components of the imaged volume multiplied by a complex-valued position-dependent coil sensitivity map $S_i$. The following equation represents the measured $k$-space signal $y_i$ for coil $i$ in an array of $n_c$ coils. The multiplication is entrywise. 
+        </li>
+        <li>
+          $\hat{m} = \mathcal{F}(S_i m)+\text{noise}$ is the equation for Parallel MR Imaging. 
+        </li>
+        <li>
+          Nyquist-Shannon Sampling Theorem: Establishes a sufficient condition for a sample rate that permits a discrete sequence of samples to capture all of the information from a continuous-time signal of finite bandwidth. 
+        </li>
+        <li>
+          Each coil generally sensitive in one position, and not so much in others. 
+        </li>
+        <li>
+          Sensitivity maps known, and $k$-space sampling full $\Rightarrow$ Satisfies Nyquist sampling condition $\Rightarrow$ set of linear relations defined between $m$ and each $y_i$ defines a linear system overdetermined by a factor of $n_c$
+        </li>
+        <li>
+          We solve this system of equations using a pseudoinverse operation, resulting in the least norm least squares reconstruction of $m$(???). This will work so long as the linear system is full rank. Reconstruction quality dependent on signal to noise ratio.  
+        </li>
+        <li>
+          Accelerated parallel imaging: Each coil's $k$-space is undersampled. Total number of measurements across all coils exceeds the number of image voxels to be reconstructed $\Rightarrow$ unregularized least squares solution viable $\Rightarrow$ $n_c$-fold speedup. 
+        </li>
+        <li>
+          Voxel: A pixel, but in 3-d space...kinda...?
+        </li>
+        <li>
+          There is so much MRI specific jibber jabber in English that I don't understand...and they don't explain. 
+        </li>
+        <li>
+          Classical MRI Reconstruction: "Solve a regularized inverse optimization problem to find the spatially resolved image from the sub-sampled k-space data"
+        </li>
+        <li>
+          The ML approach gives us: $\hat{m}=B(y)$, where we learn the reconstruction function $B$ through sampled pair tuples $(y,m)$ drawn from a population. I am going to assume here that $y$ is the signal from the MRI process, and the $m$ is the complete reconstruction using classical (slow) techniques, $m$ is the true image. 
+        </li>
+        <li>
+          We want to find the $B$ that minimizes expected loss over a population distribution, this is empirical loss minimization. 
+        </li>        
+        <li>
+          $B^*=\text{argmin}_B R(B)$ where $R(B)=\mathbb{E}_{(y,m)}[L(B(y),m)]$
+        </li>
+        <li>
+          Of course we cannot minimize actual risk, so we work with the proxy of empirical risk: $R_{empirical}(B)=\frac{1}{n_{data}}\sum_{i=1}^{n_{data}}L(B(y^{(i)}),m^{(i)})$
+        </li>
+        <li>
+          Datasets big enough to do signal processing, but not Deep Learning. 
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+         <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
+        <li>
+          
+        </li>
 
-      </p>
+      </ul> 
+      
     </div>
   </div>
 
@@ -59,7 +208,11 @@ and is wrapped around the whole page content, except for the footer in this exam
 <div class="w3-col l4">
   <!-- About Card -->
   <div class="w3-card w3-margin w3-margin-top">
-  <img src="socp.png" style="width:100%">
+  <img src="knee.png" style="width:100%">
+  <div class="w3-container w3-white">
+    <h4><b>Ray's Research</b></h4>
+    <p>Mentored by Maryam Vareth, Berkeley Institute of Data Science, making MRI faster.</p>  
+  </div>
   <p><button onclick="location.href='blog.html'" class="w3-button w3-padding-large w3-white w3-border"><b>Back to blog home»</b></button></p>
   </div><hr>
   
