@@ -1,0 +1,55 @@
+-A deadlock is a cycle of waiting among a set of threads, where each thread waits for some other thread in the cycle to take some action. 
+-Mutually recursive locking:
+	lock1.acquire()
+	lock2.acquire()
+
+	lock2.acquire()
+	lock1.acquire()
+-Nexted waiting is when one shared object calls into another shared object while holding the first object's lock, and then waits on a condition variable. 
+-Deadlock can happen with not just locks, but also with memory, processing time, disk blocks, or space in a buffer. 
+-Two bounded buffers deadlock
+	buffer1.put();
+	buffer1.put();
+	...
+	buffer2.get();
+	buffer2.get();
+
+	buffer2.put();
+	buffer2.put();
+	...
+	buffer1.get();
+	buffer1.get();
+-Dining philosophers problem with n=2 quivalent to mutually recursive locking. 
+-Starvation is when a thread fails to make progress for an indefinite amount of time. 
+-Deadlock is starvation with the extra condition that a group of threads forms a cycle where none of the other threads make progressbecause each thread is waiting for some other thread in the cycle to take action. 
+-Deadlock -> Starvation
+-Starvation !-> Deadlock
+-Suject to starvation/deadlock means that starvation/deadlock could occur, but it actually occuring is dependent on other factors. 
+-Necessary conditions for deadlock, prevent any one of these, and your system will be safe from deadlock! Bounded resources, finite number of threads able to use a resource, no preemption, wait while holding, also called multiple indpendent requests, circular waiting. 
+-These four conditions are necessary but not sufficient. Deadlock -> four conditions, but four conditions !-> deadlock. 
+-To prevent deadlock, exploit or limit the behavior of the program, predict the future, detect and recover, which means threads can revert themselves to an earlier state. 
+-Tackling at least one of the four necessary conditions for deadlock include, providing sufficient resources, preempt resources, release lock when calling out of module, lock ordering, only acquire locks in a certain order. 
+-The Banker's Algorithm for Avoiding Deadlock. The idea would be to now have programs state the resources that they could possibly need before they run, and then atomically acquire all resources at beginning of execution. 
+-In the Banker's algorithm, a thread states is maximum resources requirements before it begins, and it acquires and releases those resources incrementally as the task runs. The runtime system delays granting some of those requests to ensure that they system never deadlocks. The insight behind the algorithm is that a system that may deadlock will not necessarily do so: for some interleavings of requests it will deadlock, but for others it will not. By delaying when some resource requests are processed, a system can avoid interleavings that could lead to deadlock. 
+-Safe state: In a safe state, for any possible sequence of resources requests, there is at least one safe sequence of processing the requests that eventually succeeds in granting all pending and future requests. 
+-Unsafe state: In an unsafe state, there is at least one sequence of future resource requests that leads to deadlock no matter what processing order is tried. 
+-Deadlocked state: In a deadlocked state, the system has at least one deadlock. 
+-The Banker's Algorithm keeps a system in a safe state. 
+-The analogy is with a small town banker. He has total money, and each business i can borrow max[i] dollars. The conservative banker only issues credit lines that sum to at most his total funds. This is analogous to acquire-all or provide sufficient resources. 
+-However, a more aggressive banker will allow credit lines that are > max[i], so long as the business tolerates a delay in the payout of the loan. 
+-If deadlocks are rare, why pay the overhead in the common case to prevent them?
+-We need to find a way to recover from deadlock, and we need a way to detect deadlock so that we known when to invoke the recovery mechanism. 
+-Resources are by definition not revocable. 
+-One solution could be to just kill the process causing deadlock and release the resources...we have nothing to lose anyways. 
+-But this is unsafe because killing a process and releasing the lock could leave other objects in inconsistent states. 
+-A widely used approach would be to proceeed without the resource. 
+-A more widely used approach is transactions, rollback and retry. 
+-Thread rollback, choose a victim thread, stop them, undo their actions, and let other threads proceed. 
+-Thread restarting, break deadlock, other threads complete their work, restart the victim thread. 
+-Transactions define a safe point for rollback and restart.
+-No other thread is allowed to see the results of a transaction until the transaction completes. 
+
+-Address Translation
+-Address translation is the conversion from the memory address the program thinks it is referencing to the physical location of that memory cell. 
+-Why bother? Process isolation, interproces communication, shared code segments, program initialization, efficient dynamic memory allocation, cache management (page coloring), program debugging, efficient I/O, memory mapped files, virtual memory, checkpointing and restart, persistent data structures, process migration, information flow control, distributed shared memory.
+-Roadmap: Address translation concept, flexible address translation, efficient address translation, software protection. 
