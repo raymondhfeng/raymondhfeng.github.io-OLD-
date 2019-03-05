@@ -31,6 +31,55 @@ and is wrapped around the whole page content, except for the footer in this exam
   <div class="w3-card-4 w3-margin w3-white">
     <img src="2.17.png" style="width:50%">
     <div class="w3-container">
+      <h3><b>Reading Signal Processing Papers</b></h3>
+      <h5><span class="w3-opacity">March 4th, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      
+      <ul>
+        <li>Unsupervised Learning of Structured Radio Communication Signals</li>
+        <li>"We explore unsupervised representation learning of radio communication signals in raw sampled time series representation."</li>
+        <li>Unsupervised Learning: Learning without labels, PCA, KNN</li>
+        <li>Representation Learning: Learning features...?</li>
+        <li>Time Series: Signals...basically, discrete, because it is sampled.</li>
+        <li>Modulation Basis Functions: Not sure what modulation is. Basis functions as in when you have a p-periodic signal in discrete time, we can decompose the signal as a linear combination of p basis functions...? Analytic bases vs </li>
+        <li>Autoencoder: Type of NN that learns its own weights.</li>
+        <li>Gabor filter as a basis function. This makes sense, in DT, basis function can be represented as a vector that is determined by impulse response. Filters are defined by their impulse responses.</li>
+        <li>$r(t)=e^{j*n_{Lo}(t)}\int_{\tau=0}^{\tau_0}s(n_{Clk}(t-\tau))h(\tau)+n_{Add}(t)$. Seems like $h(\tau)$ is impulse response and it is being convolved with something, and there is additive noise. Not sure what Clk noise implies.</li>
+        <li>Seems like </li>
+        <li></li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="2.17.png" style="width:50%">
+    <div class="w3-container">
+      <h3><b>Installing BART</b></h3>
+      <h5><span class="w3-opacity">February 17th, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      
+      <ul>
+        <li>Downloading Xcode, 5.8gb</li>
+        <li>Running Xcode setup: https://github.com/mrirecon/bart/blob/master/README</li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="2.17.png" style="width:50%">
+    <div class="w3-container">
       <h3><b>Downloaded singlecoil_test.tar</b></h3>
       <h5><span class="w3-opacity">February 17th, 2019</span></h5>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
@@ -49,13 +98,6 @@ and is wrapped around the whole page content, except for the footer in this exam
         <li>__getitem__ returns a transformed version of the data, somehow related to k-space</li>
         <li>What is a "kspace tensor"?</li>
         <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
       </ul>
 
       <h3><b>Attempting to Understand k-space</b></h3>
@@ -64,16 +106,10 @@ and is wrapped around the whole page content, except for the footer in this exam
         <li>what are "spatial frequencies"?</li>
         <li>"K space is the Fourier Transform of the k-space image"</li>
         <li>"Fourier Plane", "Optical Fourier Transform", "artifacts"</li>
-        <li></li>
-        <li></li>
-        <li></li>
-        <li></li>
-      </ul>
-
-      <h3><b>Brushing up on Fourier Transform, also 2-d FT</b></h3>
-      <ul>
-        <li></li>
-        <li></li>
+        <li>Following this tutorial: https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3097694/</li>
+        <li>Installed Matlab using school license.</li>
+        <li>The relationship between k-space data and the image is the Fourier Transformation</li>
+        <li>Michael Lustig's Website is very informative</li>
         <li></li>
         <li></li>
         <li></li>
@@ -96,6 +132,9 @@ and is wrapped around the whole page content, except for the footer in this exam
       
       <ul>
         <li>Cloned the GitHub repo</li>
+        <li>Issue: mkl-random, pytorch, had to be installed manuall.</li>
+        <li>NOTE: When running the data off a hard drive/usb drive, the USB drive should be formatted correctly.</li>
+        <li></li>
         <li>Applied for dataset access</li>
         <li>This smallest single coil test is 80GB...how do I do this...</li>
         <li>Downloading singlecoil_test.tar...eta 2 hours</li>
@@ -213,7 +252,7 @@ and is wrapped around the whole page content, except for the footer in this exam
   <img src="knee.png" style="width:100%">
   <div class="w3-container w3-white">
     <h4><b>Ray's Research</b></h4>
-    <p>Mentored by Maryam Vareth, Berkeley Institute of Data Science, making MRI faster.</p>  
+    <p>Mentored by Maryam Vareth, Berkeley Institute of Data Science, making MRI faster. Also home to miscellaneous deviations into interesting things!</p>  
   </div>
   <p><button onclick="location.href='blog.html'" class="w3-button w3-padding-large w3-white w3-border"><b>Back to blog home»</b></button></p>
   </div><hr>
