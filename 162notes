@@ -53,3 +53,56 @@
 -Address translation is the conversion from the memory address the program thinks it is referencing to the physical location of that memory cell. 
 -Why bother? Process isolation, interproces communication, shared code segments, program initialization, efficient dynamic memory allocation, cache management (page coloring), program debugging, efficient I/O, memory mapped files, virtual memory, checkpointing and restart, persistent data structures, process migration, information flow control, distributed shared memory.
 -Roadmap: Address translation concept, flexible address translation, efficient address translation, software protection. 
+=======
+-Goals of address translation implementation: Memory protection, memory sharing, flexible memory placement, sparse addresses, runtime lookup efficiency, compact translation tables, portability. 
+-Virtual address: how the process sees its own memory. Physical Address: real locations in memory. 
+
+-Towards Flexible Address Translation
+-Base and bound: start at a base to offset from, check if greater than bound. 
+-Since physical memory can contain several processes, the kernel resets the contents of the base and bound registers on each process context switch to the appropriate values for that process. 
+-Segmentation: hardware supports an array of pairs of base and bounds registers for each process. Each entry in the array controls a segment of the virtual address space. 
+
+-Address translation in linkers and loaders. 
+-Segment local addresses: addresses that are relative to the current segment. 
+-Zero on reference: Allocates a memory region for the heap, but only zeros the first few kilobytes. It sets the bound register in the segment table to limit the program to just the zeroed part of memory. If the program expands its heap, it will take an expcetion, and the operating system kernel can ero out additional memory before resuming execution. 
+-External Fragmentation: The point where the operating system has enough free memory, but it is not contiguous. 
+-Paged memory: Memory is now allocated in fixed-sized chunks called page frames. 
+-Page tables contain pointers to page frames. 
+-Core map: Records information about each physical page frame such as which page table entries point to it. 
+-Data Breakpoint: Request to stop the execution of a program when it references or modifies a particular memory location. 
+-Downside: management of physical memory is simpler, but management of virtual address space becomes more challenging. 
+-The size of page table is proportional to the size of the virtual address space, not to the size of physical memory. The more sparse the virtual address space, the more overhead is needed for the page table. Most of the entries will be invalid, representing parts of the virtual address space that are not in use, but physical memory is still needed for all of those page table entries. 
+-Internal Fragmentation: A larger page frame can waste space if a process does not use all of the memory inside the frame. 
+-Multi-level translation. All multi level address translation systems use paging as the lowest level of the tree. The main differences between systems are in how they reach the page table at the leaf of the tree. The reasons are: Efficient memory allocation, efficient disk transfers, efficient lookup, efficient reverse lookup, page-granularity protection and sharing. 
+-Paged Segmentation: Memory is segmented, but instead of each segment table entry pointing directly to a contiguous region of physical memory, each segment table entry points to a page table, which in turn points to the memory backing that segment. 
+-Multi-Level Paged Segmentation: Using a segmented memory where each segment is managed by a multi-level page table. 
+-Global Descriptor Table: Equivalen to a segment table. Stored in memory, each entry points to the multilevel page table for that segment along with the segment length and segment access permissions. To start a process, the operating system sets up the GDT and initializes a register, the Global Descriptor Table Register, that contains the address and length of the GDT. 
+
+-Page directory: the top level page table. 
+-Portability: ye...
+
+-The very first hardware caches were used to improve translation performance. 
+-Inverted page table: all it is is a hash table for address translation. 
+-Translation Lookaside Buffers: A small hardware table containing the results of recent address translations. Each entry in the TLB maps a virtual page to a physical page. 
+-TLB Hit: The TLB hardware checks all of the entries simultaneously against the virtual page. If there is a match, the processor uses that entry to form the physical address, skipping the the rest of the steps of address translation. On a TLB hit, the hardware still needs to check permissions. 
+-TLB Miss: None of the TLB entries match, so hardware just does the full address translation as described above. 
+-There can be two level TLBs, one that is fast, and one that is slower. A full address translation will only occur if both miss. 
+-TLBs are Set Associative, compared to a fully associative TLB, set associative ones need fewer comparators, but have a higher miss rate. 
+-Need to make TLB sufficiently large such that most addresses used by the program will be hittable. However, TLB misses are still significant costs for many applications.
+
+-Superpages: A superpage is a set of contiguous pages in physical memory that map a contiguous region of virtual memory, where the pages are algined so that they share the same high-order (superpage) address. 
+-Goal: Increase TLB hit rate. 
+-Helps with buffering displays and working with large scientific matrices. 
+
+-TLB Consistency: Need to maintain consistency. 
+	-Process context switch
+	-TLB Flush: discard all contents
+	-Tagged TLB: hardware ignores TLB entries from other processes, but can reuse TLB entries that remain from the last time the current process executed.
+	-Permission Reduction, hardware consistency is not usually provided for the TLB, keeping the TLB consistent with the page table is the responsibility of the operating system kernel. 
+	-Need to discard TLB or at least TLB entries whenever permissions are reduced.
+	-TLB Shootdown: When a processor on a multiprocessor system changes its TLB, the corresponding entry in every processor's TLB has to be discarded. This entails a lot of interrupts. This is called a TLB shootdown. Many operating systems batch TLB shootdown requests. 
+
+-Virtually Addressed Caches: Include a virtually addressed cache before the TLB is consulted. All consistency issues that apply to TLBs also apply to virtually addressed caches. 
+-Memory address alias: Share memory by having different virtual addresses referring to the same memory location. Solve this by providing a structure for reverse lookups. 
+
+-Physically addressed caches: A last optimization placed right before main memory to prevent the need for going to main memory. Obviously faster than main memory, but also, TLB misses will be faster...?
