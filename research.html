@@ -29,7 +29,65 @@ and is wrapped around the whole page content, except for the footer in this exam
 <div class="w3-col l8 s12">
 
   <div class="w3-card-4 w3-margin w3-white">
-    <img src="2.17.png" style="width:50%">
+    <img src="xsede.png" style="width:10%">
+    <div class="w3-container">
+      <h3><b>Learn XSEDE</b></h3>
+      <h5><span class="w3-opacity">March 19th, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      <ul>
+        <li>Aaron responded with XSEDE login info</li>
+        <li>Ran singlecoil unet locally, very slow</li>
+        <li>Asked Aaron to upload more data to XSEDE</li>
+        <li>Still attempting to get hands on multicoil data</li>
+        <li>Got XSEDE set up, more or less</li>
+        <li>How to: Use the ondemand platform</li>
+        <li>Upload the facebook fastMRI repository along with a couple of data points to the platform</li>
+        <li>Some minor modifications: reimplement fft and ifft in transforms.py using functions from scipy.fftpack (because MKL is tricky)</li>
+        <li>In requirements.txt:</li>
+        <li>Set torch==0.4.1.post2 to torch==0.4.1</li>
+        <li>Delete certifi==2018.10.15 because XSEDE nodes already has it and doesn’t want to uninstall it</li>
+        <li>Module load anaconda3, create a conda virtualenv with python version 3.6</li>
+        <li>Activate the virtualenv and pip install -r requirements.txt</li>
+        <li>Environment is set up, now just need to learn how to write SBATCH directives and a small handful of other things for scripting jobs (I’ve got a sample script for that)</li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="reinforcement.jpg" style="width:20%">
+    <div class="w3-container">
+      <h3><b>Reading Sherman's Paper</b></h3>
+      <h5><span class="w3-opacity">March 9th, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      
+      <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="wavelet.png" style="width:10%">
     <div class="w3-container">
       <h3><b>Reading Signal Processing Papers</b></h3>
       <h5><span class="w3-opacity">March 4th, 2019</span></h5>
@@ -58,7 +116,7 @@ and is wrapped around the whole page content, except for the footer in this exam
   </div>
 
   <div class="w3-card-4 w3-margin w3-white">
-    <img src="2.17.png" style="width:50%">
+    <img src="xcode.png" style="width:10%">
     <div class="w3-container">
       <h3><b>Installing BART</b></h3>
       <h5><span class="w3-opacity">February 27th, 2019</span></h5>
