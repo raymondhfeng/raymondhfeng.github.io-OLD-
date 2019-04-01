@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<title>Ray's Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="images/rubiks.png">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Ariel", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1200px">
+
+<!-- Grid -->
+<div class="w3-row">
+
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+      <h3><b>Running fastMRI code in XSEDE</b></h3>
+      <h5><span class="w3-opacity">March 31, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      <ul>
+        <li>Navigate to pylon5, clone the fastMRI repo. <code>git clone https://github.com/facebookresearch/fastMRI.git</code></li>
+        <li>Create a conda virtual environment, <code>conda create --name myenv</code>, replace <code>myenv</code> with whatever you want. This way, we can install packages without sudo priviledges.</li>
+        <li>Activate the conda virtual environment: <code>conda activate myenv</code></li>
+        <li>Change the PYTHONPATH environment variable. This is so that the python interpreter knows to look in the fastMRI directory for things. You can either do in the command line <code>export PYTHONPATH=/pylon5/ca4s8fp/raymond8/fastMRI</code> or paste the previous line into your <code>.bash_profile</code>. The latter is permanent whereas the former will only persist as long as you don't close your shell.</li>
+        <li>cd into the fastMRI directory, and run <code>pip install -r requirements.txt</code></li>
+        <li>Use vim to create a batch file: <code>vim job.sh</code> in the fastMRI directory, and copy paste this into it.</li>
+        <li>
+        <code>
+        #!/bin/sh <br>
+        #SBATCH -p GPU <br>
+        #SBATCH -t 02:00:00 <br>
+        #SBATCH -N 1 <br>
+        #SBATCH --gres=gpu:p100:2 <br>
+        module load anaconda3 <br>
+        source activate python3 <br>
+        module load cuda <br>
+
+        cd /pylon5/ca4s8fp/raymond8 <br>
+
+        python fastMRI/models/unet/train_unet.py --challenge singlecoil --data-path /pylon5/ca4s8fp/raymond8 --exp-dir checkpoints --num-epochs 5
+        </code>
+        </li>
+        <li>Submit the job: <code>sbatch job.sh</code></li>
+        <li>Check the job status with: <code>sacct</code></li>
+      </ul>
+      
+    </div>
+
+    <div class="w3-container">
+      <p>
+
+      </p>
+    </div>
+  </div>
+
+
+  <!-- Blog entry -->
+  <hr>
+<!-- END BLOG ENTRIES -->
+</div>
+
+<!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  <div class="w3-card w3-margin w3-margin-top">
+  <img src="socp.png" style="width:100%">
+  <p><button onclick="location.href='blog.html'" class="w3-button w3-padding-large w3-white w3-border"><b>Back to blog home»</b></button></p>
+  </div><hr>
+  
+  
+  <hr> 
+ 
+  
+  
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+</body>
+</html>

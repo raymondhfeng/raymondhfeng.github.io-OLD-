@@ -31,6 +31,64 @@ and is wrapped around the whole page content, except for the footer in this exam
   <div class="w3-card-4 w3-margin w3-white">
     <img src="xsede.png" style="width:10%">
     <div class="w3-container">
+      <h3><b>Run Singlecoil Unet Training on Bridges</b></h3>
+      <h5><span class="w3-opacity">March 30th, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      <ul>
+        <li>Downloaded singlecoil_train/val/test and chmod'ed with everyone.</li>
+        <li>Create conda virtual environment, and used pip to install requirements.txt, conda doesn't work for pytorch for whatever reason.</li>
+        <li>Clone the fastMRI github into my pylon5.</li>
+        <li>Modify .bash_profile, include: export PYTHONPATH=path/to/fastMRI</li>
+        <li>Run the following script: </li>
+        <code>
+        #!/bin/sh <br>
+        #SBATCH -p GPU <br>
+        #SBATCH -t 02:00:00 <br>
+        #SBATCH -N 1 <br>
+        #SBATCH --gres=gpu:p100:2 <br>
+        module load anaconda3 <br>
+        source activate python3 <br>
+        module load cuda <br>
+
+        cd /pylon5/ca4s8fp/raymond8 <br>
+
+        python fastMRI/models/unet/train_unet.py --challenge singlecoil --data-path /pylon5/ca4s8fp/raymond8 --exp-dir checkpoints --num-epochs 5
+        </code>
+        <li>Used about 50 units of Culich's allocation.</li>
+        <li>Submitted batch job on RM-small to do 8 hours of data download for multicoil data...just in case.</li>
+        <li>Unet Papers: https://arxiv.org/pdf/1505.04597.pdf</li>
+        <li>https://arxiv.org/pdf/1411.4038.pdf</li>
+      </ul>
+        <h3><b>Wavelets</b></h3>
+      <ul>
+        <li>https://www.eecis.udel.edu/~amer/CISC651/IEEEwavelet.pdf</li>
+        <li>https://arxiv.org/pdf/math/9304214.pdf</li>
+        <li>Define: Mathematical functions that cut up data into different frequency components, and then study each component with a resolution matched to its scale.</li>
+        <li>Fundamental Idea: Analyze according to scale, see both the forest and the trees. To do this, we modify the original idea of Fourier by using different basis functions, other than just sines and cosines.</li>
+        <li>Basis functions, by definition, need to be orthogonal, and ideally should have the same magnitude.</li>
+        <li>Analyzing wavelet/Mother wavelet: a wavelet prototype function.</li>
+        <li>
+          Fourier tells us any $2\pi$ periodic function $f(x)$ is representable by $a_0+\sum_{k=1}^{\infty}(a_k\cos(kx)+b_k\sin(kdx))$ <br>
+          We calculate the Fourier coefficients by: <br>
+          $a_0=\frac{1}{2\pi}\int_{0}^{2\pi}f(x)dx, a_k=\frac{1}{\pi}\int_{0}^{2\pi}f(x)\cos(kx)dx, b_k=\frac{1}{\pi}\int_{0}^{2\pi}f(x)\sin(kx)dx$
+        </li>
+        <li>Windowed Fourier Transform localizes the signal in time. The Fast Fourier Transform is faster.</li>
+        <li>Wavelet basis functions are localized in space.</li>
+        <li>The Discrete Wavelet Transform: Dilations and translations of the "Mother function" or "analyzing wavelet" $\Phi(x)$ define an orthogonal basis, our wavelet basis: $\Phi_{(s,l)}(x)=2^{-\frac{s}{2}}\Phi(2^{-s}x-l)$</li>
+        <li></li>
+        <li></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="xsede.png" style="width:10%">
+    <div class="w3-container">
       <h3><b>Learn XSEDE</b></h3>
       <h5><span class="w3-opacity">March 19th, 2019</span></h5>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
