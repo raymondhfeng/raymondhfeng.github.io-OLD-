@@ -31,6 +31,50 @@ and is wrapped around the whole page content, except for the footer in this exam
   <div class="w3-card-4 w3-margin w3-white">
     <img src="xsede.png" style="width:10%">
     <div class="w3-container">
+      <h3><b>Reading More Papers, trying to figure out what to do...</b></h3>
+      <h5><span class="w3-opacity">April 3rd, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      <ul>
+        <li><a href="https://statweb.stanford.edu/~candes/papers/StableRecovery.pdf" target="_blank">Stable Signal Recovery from Incomplete and Inaccurate Measurements</a> The canonical CS paper.</li>
+        <li><a href="http://people.eecs.berkeley.edu/~mlustig/mlustigThesis.pdf" target="_blank">Miki Lustig Thesis</a></li>
+        <li><a href="http://indexsmart.mirasmart.com/ISMRM2018/PDFfiles/2802.html" target="_blank">Machine Learning Using the BART Toolbox - Implementation of a Deep Convolutional Neural Network for Denoising</a></li>
+        <li><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4142121/" target="_blank">ESPIRiT — An Eigenvalue Approach to Autocalibrating Parallel MRI: Where SENSE meets GRAPPA</a></li>
+        <li><a href="http://www.ecs.umass.edu/~mduarte/images/IntroCS.pdf" target="_blank">Introduction to Compressed Sensing</a></li>
+        <li><a href="https://iopscience.iop.org/article/10.1088/1361-6560/aac71a/pdf" target="_blank">Deep learning for undersampled MRI reconstruction</a></li>
+        <li><a href="https://arxiv.org/pdf/1805.03300.pdf" target="_blank">Highly Scalable Image Reconstruction using Deep
+Neural Networks with Bandpass Filtering</a></li>
+
+      </ul>
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="xsede.png" style="width:10%">
+    <div class="w3-container">
+      <h3><b>Shannon-Nyquist Sampling Theorem</b></h3>
+      <h5><span class="w3-opacity">April 1st, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      <ul>
+        <li>We want to store an analog signal on a digital computer. Trade off is, the higher number of samples, the more storage we will have to use.</li>
+        <li>Which is the minimum necessary sampling frequency for a given type of signal, that will not distort the underlying information and/or allow its accurate reconstruction?</li>
+        <li>Nyquist-Shannon Sampling Theorem: The minimum sampling frequency of a signal that it will not distort its underlying information, should be double the frequency of its highest frequency component.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="xsede.png" style="width:10%">
+    <div class="w3-container">
       <h3><b>Run Singlecoil Unet Training on Bridges</b></h3>
       <h5><span class="w3-opacity">March 30th, 2019</span></h5>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
@@ -79,9 +123,16 @@ and is wrapped around the whole page content, except for the footer in this exam
         </li>
         <li>Windowed Fourier Transform localizes the signal in time. The Fast Fourier Transform is faster.</li>
         <li>Wavelet basis functions are localized in space.</li>
-        <li>The Discrete Wavelet Transform: Dilations and translations of the "Mother function" or "analyzing wavelet" $\Phi(x)$ define an orthogonal basis, our wavelet basis: $\Phi_{(s,l)}(x)=2^{-\frac{s}{2}}\Phi(2^{-s}x-l)$</li>
-        <li></li>
-        <li></li>
+        <li>The Discrete Wavelet Transform: Dilations and translations of the "Mother function" or "analyzing wavelet" $\Phi(x)$ define an orthogonal basis, our wavelet basis: $\Phi_{(s,l)}(x)=2^{-\frac{s}{2}}\Phi(2^{-s}x-l)$. $s,l$ give the scale and location of the basis function respectively.</li>
+        <li>To span our data domain at different resolutions, the analyzing wavelet is used in a scaling equation: $W(x)=\sum_{k=-1}^{N-2}(-1)^kc_{k+1}\Phi(2x+k)$. Here, $W(x)$ is the scaling function for the mother function $\Phi$, and $c_k$ are the wavelet coefficients.</li>
+        <li>The wavelet coefficients must satisfy linear and quadratic constraints of the form: $\sum_{k=0}^{N-1}c_k=2,\sum_{k=0}^{N-1}c_kc_{k+2l}=2\delta_{l,0}$. Where $\delta$ is the delta function and $l$ is the location index.</li>
+      </ul>
+
+      <h3><b>Martingales</b></h3>
+      <ul>
+        <li>http://www.columbia.edu/~ks20/stochastic-I/stochastic-I-MG-Intro.pdf</li>
+        <li>Not really relevant to research.</li>
+        <li>Uniform Integrability...</li>
       </ul>
     </div>
   </div>
