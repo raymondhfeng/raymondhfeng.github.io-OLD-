@@ -29,6 +29,97 @@ and is wrapped around the whole page content, except for the footer in this exam
 <!-- Blog entries -->
 <div class="w3-col l8 s12">
 
+    <div class="w3-card-4 w3-margin w3-white">
+    <img src="socp.png" style="width:10%">
+    <div class="w3-container">
+      <h3><b>AI and stuff</b></h3>
+      <h5><span class="w3-opacity">April 15th, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+
+<p>There I was, on a foggy Tuesday Bay Area morning, halfway through the Fall semester of 2018, sitting in Li Ka Shing 105 lecture hall, steaming hot coffee in left hand, notebook propped on the miniscule armchair desk on my right, pen at the ready. It was 9:08, class had not yet started, consistent with the Cal tradition of classes starting 10 minutes after the hour. Attendance was spotty, especially considering the fact that the lecture would not be posted online later. There were only about 40 people in the room. 500 were enrolled in the course. This was CS189, Introduction to Machine Learning, a class that was notorious in the CS department for its mathematical rigor and conceptual difficulty. It was halfway through the semester, and I thoroughly loved the course. Learning in lecture the theoretical underpinnings behind Support Vector Machines, Logistic Regression, Singular Value Decomposition, it’s as if I was peering into the soul of the universe. In afternoon discussion section, a graduate student would walk us through step by step the derivation of Kernel Ridge Regression, explaining all the subtleties along the way. At night, study groups convened and toiled at the pages and pages of problem sets. And if we weren’t too tired, we would get started on implementing the coding part of the homework, learning PyTorch and CUDA, each group hoping that their Residual Neural Network had the lowest misclassification rate. This class could easily be a 30 hour per week ordeal, and I enjoyed every second of it. Each concept in lecture was like a screwdriver added to my toolbelt. I felt like Thanos in that lecture hall, slowly but surely collecting each infinity stone on my path to world domination. </p>
+<p>Everything changed on that Tuesday morning though. Professor Moritz Hardt walks in, wheeling his full carbon fiber bicycle, and plugs in his powerpoint: “Fairness in Machine Learning”. What? The first slide reads: “DO NOT SHARE THESE SLIDES”. My grip on my pen loosens. The lecture went over the human impact that AI can have, ranging from a racist beauty pageant, to a facist twitter bot, to fatal self-driven Tesla crashes. The main case study though, was an algorithm to predict recidivism rates in inmates. Recidivism is when a former inmate commits a crime again, returning to prison. However, the issue was that this algorithm seemed to label African Americans a higher risk of recidivism compared to Caucasians. So the AI optimist might ask, what if African Americans really did have a higher recidivism rate? But the study showed that if we condition on both inmates not recidivating, then the algorithm still would label the African American inmate as a higher recidivism risk. This was the bottom line. The second that you involve humans, the model must be evaluated as if humans mattered. There are a number of criterion that describes the “fairness” of an ML/AI algorithm that is the topic of much research today. But as I walked out of the lecture hall with my friend, I was confused. Where was the math? I know I sure as heck can’t import scipy and call scipy.linalg.fairness() on my model. That day changed my perspective on ML. I even went as far as emailing professor Hardt about how one should understand fairness, because it surely wasn’t as clean as Linear Regression. His response was enlightening: “I strongly believe that ML is not about techniques. It's about concepts. I'm sure you could learn kNN or XGBoost in an hour. But the point of 189 is so that you understand how to think about the input and outputs to those methods. Hope you enjoyed the class.” You could go out there and learn every statistical learning algorithm there is, and that would probably make you an expert, but I have since started to balance the “nitty gritty” with the “big picture”, dissecting the algebra, but also spending time to dwell more on the effects of implementing a certain model. </p>
+<p>The second and final experience that has significantly shaped my perspective of AI/ML is my current research experience. I am an undergraduate researcher at the Berkeley Institute of Data Science, working to speed up the MRI acquisition process. How MRI works is by generating a magnetic field using a metal coil. The coil will excite the hydrogen atoms in our body, and that is what is measured, the spin of the hydrogen atoms. Currently, the classical techniques that have worked reasonably well requires finding a sparse signal domain that captures most of the information in the signal, and then using this to undersample during scanning. In short, classical techniques entails solving an optimization problem, one that ideally has a clean solution. That way, scans can be sped up, which is especially beneficial for infants. The different approach we are taking is using Recurrent Neural Networks in order to exploit the temporal features of MRI scan acquisition. The idea behind Recurrent Neural Networks is that they have memory, which aligns with the time dependent process of MRI. Performing this research had a steep learning curve though. Installing packages, learning the C development stack, getting familiar with the Bridges Supercomputer environment, and managing Anaconda environments, along with the 1Tb+ of data was new to me. No matter how well I “understood the concepts” or could recreate the theory and calculations outlined in papers, nothing else matters if the model doesn’t run because your GPU ran out of memory! </p>
+<p>ML/AI is an extremely diverse field, with many applications. One cannot just “understand the concepts” but not know how to put models into use, and one cannot just be a master at training models but unable to modify the code when a change in the inputs arrives. A balance must be achieved. Take neural networks for example. It is easy to get overly optimistic at the advances in speech recognition and computer vision, as it is widely understood that these ideas have been in place for decades. The reason for their current success is due to the advancements in hardware. This makes it easy for elitists and purists to overgeneralize. Take my convex optimization professor for example, I can’t tell you how many times he has said: “Neural Networks is just nonlinear optimization!”, or “ML is just backpropagation!”. While there is a lot of truth in these sentiments, there is are a lot of shortcomings in a completely theoretical treatment of Neural Networks. Some empirical results are just unexplainable with current technologies. </p>
+<p>The future of AI is a balancing act. In order for the field to advance, there must be theoretical models developed that push the feasibility of modern technology. But there also must be an industry standard foundation for models that involve humans, with fairness and safety being the foremost issues. This will certainly be a challenge, and perhaps even impossible with all the proprietary codebases. But to maintain progress in this exciting technology, there must be a balance. </p>
+    <p><button onclick="location.href='cybersecurity.html'" class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+    </div>
+  </div>
+
+  <div class="w3-card-4 w3-margin w3-white">
+    <img src="bgp_imposs.png" style="width:10%">
+    <div class="w3-container">
+      <h3><b>The Byzantine Generals Problem</b></h3>
+      <h5><span class="w3-opacity">April 14th, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']], 
+        processEnvironments: false
+      }
+      });
+      </script>
+
+      <ul>
+        <li>Computer systems must be able to act reliably under the stress of incorrect information.</li>
+        <li>A. All loyal generals must decide upon the same plan of action.</li>
+        <li>B. A small number of traitors cannot cause the loyal generals to adopt a bad plan.</li>
+        <li>$v(i)$ is the information communicated by general $i$, and $v(0),v(1),...$ is used by each general to generate a decision.</li>
+        <li>1. Every loyal general must obtain the same information $v(1),...,v(n)$</li>
+        <li>2. If the $i$th general is loyal, then the value he sends must be used by every loyal general as the value of $v(i)$.</li>
+        <li>1'. Any two loyal generals use the same value of $v(i)$.</li>
+        <li>The problem statment: A commanding general must send an order to $n-1$ lieutenant generals such that:</li>
+        <li>IC1. All loyal generals obey the same order.</li>
+        <li>IC2. If the commanding general is loyal, then every loyal lieutenant obeys the order he sends.</li>
+        <img src="bgp_imposs.png" style="width:50%">
+        <li>Apparently, the above reasoning is not rigorous enough to show that $\leq 3m+1$ generals cannot deal with $m$ traitors.</li>
+        <li>Proof by contradiction: Assume that there is a solution for a group of $3m$ or fewer generals, and use it to construct a solution to the three general BGP, which has been shown to be impossible.</li>
+        <li>Assumed solution is Albanian generals, the constructed solution is BGP.</li>
+        <li>Start with $3m$ Albanian generals that can handle $m$ traitors, and construct a solution that solves 3BGP.</li>
+        <li>Here's how it's done: Have each Byzantine general simulate approx $\frac{1}{3}$ of the Albanian generals.</li>
+        <li>Each Byzantine general is simulating at most $m$ Albanian generals. The Byzantine commander simulates the Albanian commander plus at most $m-1$ Albanian lieutenants. Each of the two Byz generals simulate at most $m$ Alb generals.</li>
+        <li>IC1 and IC2 are satisfied.</li>
+        <li>IC1'. All loyal lieutenants attack within 10 minutes of one another.</li>
+        <li>IC2'. If the commanding general is loyal, then every loyal lieutenant attacks within 10 minutes of the time given in the commander's order.</li>
+        <li>Commander sends attack order by sending 1:00, and sends an retreat order by sending 2:00.</li>
+        <li>(1) After receiveing the attack time from the commander, a lieutenant does one of the following: (a) If the time is 1:10 or earlier, then attack. (b) If the time is 1:50 or later, then retreat. Otherwise continue to step (2).</li>
+        <li>(2) Ask the other lieutenant what he did in step (1). (a), if the lieutenant made a decision, then make the same decision he did. (b) Otherwise, retreat.</li>
+        <li>A solution with oral messages: We define a solution that works with $m$ traitors, and $3m+1$ generals.</li>
+        <li>A1. Every message that is sent is delivered correctly.</li>
+        <li>A2. The receiver of a message knows who sent it.</li>
+        <li>A3. The absence of a message can be detected.</li>
+        <li>Note that here, intergeneral communication is possible. This is not necessarily the case.</li>
+        <li>If a traitor decides not to send a message, we set the other generals to interpret this as RETREAT by default.</li>
+        <li>Algorithm $OM(0)$. <br>
+          (1) The commander sends his value to every lieutenant. <br>
+          (2) Each lieutenant uses the value he receives from the commander, or uses the value
+RETREAT if he receives no value.</li>
+        <li>Algorithm $OM(m), m > O$. <br>
+(1) The commander sends his value to every lieutenant. <br>
+(2) For each $i$, let $v_i$ be the value Lieutenant $i$ receives from the commander, or else be 
+RETREAT if he receives no value. Lieutenant $i$ acts as the commander in Algorithm
+$OM(m - 1)$ to send the value $v_i$ to each of the $n - 2$ other lieutenants. <br>
+(3) For each $i$, and each $j \neq i$, let $v_j$ be the value Lieutenant $i$ received from Lieutenant $j$
+in step (2) (using Algorithm $OM(m - 1))$, or else RETREAT if he received no such
+value. Lieutenant $i$ uses the value $majority(v_1,...,v_{n-1})$.</li>
+        <img src="bgp_oral.png" style="width:90%">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+
+    <p><button onclick="location.href='cybersecurity.html'" class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+    </div>
+
+  </div>
+
   <div class="w3-card-4 w3-margin w3-white">
     <img src="lock_pic.png" style="width:10%">
     <div class="w3-container">
