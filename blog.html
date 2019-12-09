@@ -18,7 +18,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 <!-- Header -->
 <header class="w3-container w3-center w3-padding-32"> 
   <h1><b>Ray's Ruminations</b></h1>
-  <p>Welcome to the blog of <span class="w3-tag">Raymond Feng</span></p>
+  <p>Welcome to the blog of <span class="w3-tag">Raymond Feng</span>. Math and software.</p>
   <li><a href="index.html">Home</a></li>
   <li><a href="research.html">Research</a></li>
 </header>
@@ -29,10 +29,143 @@ and is wrapped around the whole page content, except for the footer in this exam
 <!-- Blog entries -->
 <div class="w3-col l8 s12">
 
-    <div class="w3-card-4 w3-margin w3-white">
-    <img src="socp.png" style="width:10%">
+   <div class="w3-card-4 w3-margin w3-white">
+    <img src="double_dual_space.png" style="width:20%">
     <div class="w3-container">
-      <h3><b>AI and stuff</b></h3>
+      <h3><b>UC Berkeley Math/CS Classes</b></h3>
+      <h5><span class="w3-opacity">December 8th, 2019</span></h5>
+      <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+      <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+      tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+      });
+      </script>
+      Came into Berkeley as a physics major, took 7B, and decided I never wanted to take a ring integral again. Below are some thoughts on the classes that I took over my 4 years here. 
+      <ul>
+        <li>Fall 2019</li>
+        <ul>
+          <li>CS186: Databases</li>
+          <ul>
+            <li>Logistically amazing.</li>
+            <li>Consensus is that the difficulty/workload has increased significantly with respect to years prior. For example, for the multigranularity locking homework, I believe that previous semesters did not have to implement nearly as much functionality.</li>
+            <li>SQL, data wrangling, attention to detail.</li>
+            <li>Found the multigranularity locking, recovery, entitry relationship models, functional dependency parts to be the most interesting. Testing and reading codebases was helpful as well.</li>
+            <li>Took with Prof. Hellerstein and Lakshya Jain</li>
+          </ul>
+          <li>STAT153: Time Series</li>
+          <ul>
+            <li>Mantra of the course: Remove trend and seasonality by subtracting it from the time series. The remaining time series should be "stationary", and you fit a model to that stationary time series, namely, ARIMA.</li>
+            <li>In general, statistics courses not as logistically streamlined as CS courses.</li>
+            <li>Took with Jared Fisher, GSI Johnny Hong.</li>
+            <li>Nature of the content was more conducive to slide decks as opposed to blackboards. I like blackboard lectures better. R code demos very helpful.</li>
+            <li>Took this course to learn how to predict stock prices, and go "back to the basics". </li>
+          </ul>
+          <li>STAT155: Game Theory</li>
+          <ul>
+            <li>3 Unit elective type course. Mostly stat 3rd/4th years, 1st year grad students.</li>
+            <li>Took the course because I read about Noam Brown's Libratus poker bot that used Counterfactual Regret Minimzation. While 155 doesn't touch on that specifically, it does go over the fundamentals.</li>
+            <li>Prof. Stoyanov does blackboard lectures.</li>
+            <li>Somewhat somber, many of Berkeley's game theory researches, Papadimitriou, Yuval Peres, left for Columbia and Microsoft Research, respectively.</li>
+          </ul>
+        </ul>
+        <li>Spring 2019</li>
+        <ul>
+          <li>EE120: Signal Processing</li>
+          <ul>
+            <li>Babak Ayazifar. Fourier transforms and the Nyquist rate.</li>
+          </ul>
+          <li>CS162: Operating Systems</li>
+          <ul>
+            <li>Kubiatowicz. Not much to say. Toughest course I took here. Projects were massive. Material tedious and dry.</li>
+          </ul>
+          <li>CS375: Teaching Techniques in CS, uGSI'd for CS70</li>
+          <ul>
+            <li>Pedagogy course. Learned a lot while teaching discussion sections. Fun to talk with the course staff about math. Prof. Rao is nice.</li>
+          </ul>
+        </ul>
+        <li>Fall 2018</li>
+        <ul>
+          <li>CS189: Machine Learning</li>
+          <ul>
+            <li>Yu, Recht, Hardt. Recht did most of the foundations, Yu did the PCA, </li>
+          </ul>
+          <li>EECS127: Optimization</li>
+          <ul>
+            <li>El Ghaoui and Bayen accents' made the entire course.</li>
+          </ul>
+          <li>STAT155: Game Theory</li>
+          <ul>
+            <li>3 Unit elective type course. Mostly stat 3rd/4th years, 1st year grad students.</li>
+          </ul>
+        </ul>
+        <li>Spring 2018</li>
+        <ul>
+          <li>CS161: Computer Security</li>
+          <ul>
+            <li>Interesting projects, like creating a secure file store.</li>
+          </ul>
+          <li>EECS126: Probability Theory and Random Processes</li>
+          <ul>
+            <li>Really soldifies one's understanding of probability after CS70. Kalman filtering, orderstatistics, Erdos-Renyi random graphs.</li>
+          </ul>
+          <li>CS174: Discrete Probability and Combinatorics</li>
+          <ul>
+            <li>Class should be renamed to randomized algorithms. While the first few lectures were spent on discrete probability and combinatorics, the rest of the course was all on randomized algorithms.</li>
+          </ul>
+        </ul>
+        <li>Fall 2017</li>
+        <ul>
+          <li>CS170: Algorithms</li>
+          <ul>
+            <li>Fun class, great textbook. Spent a lot of time doing the problem sets, which occasionally had really tricky problems. 4-part proofs for algorithms forces you to write out your ideas carefully.</li>
+          </ul>
+          <li>EE16a: Designing Electronic Systems</li>
+          <ul>
+            <li>Fun class, circuits part was ok. Sahai teaches linear algebra from the ground up, organically.</li>
+          </ul>
+          <li>CS188: Artificial Intelligence</li>
+          <ul>
+            <li>This class was ok, didn't really understand a lot of the concepts and lectures were meh. I've been told the course notes are really good but I didn't feel the same way.</li>
+          </ul>
+        </ul>
+        <li>Spring 2017</li>
+        <ul>
+          <li>CS70: Discrete Math and Probability Theory</li>
+          <ul>
+            <li>Really fun class. This is when I learned that CS had a lot of math in it.</li>
+          </ul>
+          <li>CS61B: Data Structures</li>
+          <ul>
+            <li>Data structures with Hug, yayyyy.</li>
+          </ul>
+        </ul>
+        <li>Fall 2016</li>
+        <ul>
+          <li>MathH54: Honors Linear Algebra</li>
+          <ul>
+            <li>No idea why I took the honors version. Everyone in here already knew all the material and were straight prodigies.</li>
+          </ul>
+          <li>Physics 7B: Electricity, Magnetism, Thermodynamics</li>
+          <ul>
+            <li>Lots of integrals, labs, and yea...</li>
+          </ul>
+          <li>CS61A: The Structure and Interpretation of Computer Programs</li>
+          <ul>
+            <li>Wish I spent more time on this class.</li>
+          </ul>
+        </ul>
+      </ul>
+
+
+
+    <p><button onclick="location.href='cybersecurity.html'" class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+    </div>
+  </div>
+
+    <div class="w3-card-4 w3-margin w3-white">
+    <img src="kalman_filter.png" style="width:20%">
+    <div class="w3-container">
+      <h3><b>AI Ethics</b></h3>
       <h5><span class="w3-opacity">April 15th, 2019</span></h5>
       <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
       <script type="text/x-mathjax-config">
@@ -46,7 +179,7 @@ and is wrapped around the whole page content, except for the footer in this exam
 <p>The second and final experience that has significantly shaped my perspective of AI/ML is my current research experience. I am an undergraduate researcher at the Berkeley Institute of Data Science, working to speed up the MRI acquisition process. How MRI works is by generating a magnetic field using a metal coil. The coil will excite the hydrogen atoms in our body, and that is what is measured, the spin of the hydrogen atoms. Currently, the classical techniques that have worked reasonably well requires finding a sparse signal domain that captures most of the information in the signal, and then using this to undersample during scanning. In short, classical techniques entails solving an optimization problem, one that ideally has a clean solution. That way, scans can be sped up, which is especially beneficial for infants. The different approach we are taking is using Recurrent Neural Networks in order to exploit the temporal features of MRI scan acquisition. The idea behind Recurrent Neural Networks is that they have memory, which aligns with the time dependent process of MRI. Performing this research had a steep learning curve though. Installing packages, learning the C development stack, getting familiar with the Bridges Supercomputer environment, and managing Anaconda environments, along with the 1Tb+ of data was new to me. No matter how well I “understood the concepts” or could recreate the theory and calculations outlined in papers, nothing else matters if the model doesn’t run because your GPU ran out of memory! </p>
 <p>ML/AI is an extremely diverse field, with many applications. One cannot just “understand the concepts” but not know how to put models into use, and one cannot just be a master at training models but unable to modify the code when a change in the inputs arrives. A balance must be achieved. Take neural networks for example. It is easy to get overly optimistic at the advances in speech recognition and computer vision, as it is widely understood that these ideas have been in place for decades. The reason for their current success is due to the advancements in hardware. This makes it easy for elitists and purists to overgeneralize. Take my convex optimization professor for example, I can’t tell you how many times he has said: “Neural Networks is just nonlinear optimization!”, or “ML is just backpropagation!”. While there is a lot of truth in these sentiments, there is are a lot of shortcomings in a completely theoretical treatment of Neural Networks. Some empirical results are just unexplainable with current technologies. </p>
 <p>The future of AI is a balancing act. In order for the field to advance, there must be theoretical models developed that push the feasibility of modern technology. But there also must be an industry standard foundation for models that involve humans, with fairness and safety being the foremost issues. This will certainly be a challenge, and perhaps even impossible with all the proprietary codebases. But to maintain progress in this exciting technology, there must be a balance. </p>
-    <p><button onclick="location.href='cybersecurity.html'" class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
+    <p><button onclick="location.href='ai_and_stuff.html'" class="w3-button w3-padding-large w3-white w3-border"><b>READ MORE »</b></button></p>
     </div>
   </div>
 
@@ -294,9 +427,24 @@ value. Lieutenant $i$ uses the value $majority(v_1,...,v_{n-1})$.</li>
   <img src="ray.jpg" style="width:30%" align="middle">
     <div class="w3-container w3-white">
       <h4><b>Raymond</b></h4>
-      <p>San Jose native, CS/Math student. I also like playing basketball, and crime drama's such as The Wire. Not sure what this blog is going to be about yet, but probably a combination of the previously stated things.</p>
+      <p>San Jose native, CS/Math student</p>
     </div>
-  </div><hr>
+  </div>
+
+  <div class="w3-card w3-margin w3-margin-top">
+    <div class="w3-container w3-white">
+      <h4><b>Table of Contents</b></h4>
+        <li><a href="index.html">UC Berkeley Math/CS Classes</a></li>
+        <li><a href="index.html">AI Ethics</a></li>
+        <li><a href="index.html">The Byzantine General's Problem</a></li>
+        <li><a href="index.html">Cybersecurity Interview Questions</a></li>
+        <li><a href="index.html">Geometry of SOCP</a></li>
+        <li><a href="index.html">A Lesson in Practicality</a></li>
+        <hr>
+    </div>
+  </div>
+
+  <hr>
   
   
   <hr> 

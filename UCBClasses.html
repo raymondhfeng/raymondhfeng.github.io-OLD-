@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<title>Ray's Blog</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="images/rubiks.png">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<style>
+body,h1,h2,h3,h4,h5 {font-family: "Ariel", sans-serif}
+</style>
+<body class="w3-light-grey">
+
+<!-- w3-content defines a container for fixed size centered content, 
+and is wrapped around the whole page content, except for the footer in this example -->
+<div class="w3-content" style="max-width:1200px">
+
+<!-- Grid -->
+<div class="w3-row">
+
+<!-- Blog entries -->
+<div class="w3-col l8 s12">
+  <div class="w3-card-4 w3-margin w3-white">
+    <div class="w3-container">
+      <img src="kalman_filter.png" style="width:20%">
+      <h3><b>AI Ethics</b></h3>
+      <h5><span class="w3-opacity">December 8th, 2019</span></h5>
+    </div>
+
+    <div class="w3-container">
+<p>There I was, on a foggy Tuesday Bay Area morning, halfway through the Fall semester of 2018, sitting in Li Ka Shing 105 lecture hall, steaming hot coffee in left hand, notebook propped on the miniscule armchair desk on my right, pen at the ready. It was 9:08, class had not yet started, consistent with the Cal tradition of classes starting 10 minutes after the hour. Attendance was spotty, especially considering the fact that the lecture would not be posted online later. There were only about 40 people in the room. 500 were enrolled in the course. This was CS189, Introduction to Machine Learning, a class that was notorious in the CS department for its mathematical rigor and conceptual difficulty. It was halfway through the semester, and I thoroughly loved the course. Learning in lecture the theoretical underpinnings behind Support Vector Machines, Logistic Regression, Singular Value Decomposition, it’s as if I was peering into the soul of the universe. In afternoon discussion section, a graduate student would walk us through step by step the derivation of Kernel Ridge Regression, explaining all the subtleties along the way. At night, study groups convened and toiled at the pages and pages of problem sets. And if we weren’t too tired, we would get started on implementing the coding part of the homework, learning PyTorch and CUDA, each group hoping that their Residual Neural Network had the lowest misclassification rate. This class could easily be a 30 hour per week ordeal, and I enjoyed every second of it. Each concept in lecture was like a screwdriver added to my toolbelt. I felt like Thanos in that lecture hall, slowly but surely collecting each infinity stone on my path to world domination. </p>
+<p>Everything changed on that Tuesday morning though. Professor Moritz Hardt walks in, wheeling his full carbon fiber bicycle, and plugs in his powerpoint: “Fairness in Machine Learning”. What? The first slide reads: “DO NOT SHARE THESE SLIDES”. My grip on my pen loosens. The lecture went over the human impact that AI can have, ranging from a racist beauty pageant, to a facist twitter bot, to fatal self-driven Tesla crashes. The main case study though, was an algorithm to predict recidivism rates in inmates. Recidivism is when a former inmate commits a crime again, returning to prison. However, the issue was that this algorithm seemed to label African Americans a higher risk of recidivism compared to Caucasians. So the AI optimist might ask, what if African Americans really did have a higher recidivism rate? But the study showed that if we condition on both inmates not recidivating, then the algorithm still would label the African American inmate as a higher recidivism risk. This was the bottom line. The second that you involve humans, the model must be evaluated as if humans mattered. There are a number of criterion that describes the “fairness” of an ML/AI algorithm that is the topic of much research today. But as I walked out of the lecture hall with my friend, I was confused. Where was the math? I know I sure as heck can’t import scipy and call scipy.linalg.fairness() on my model. That day changed my perspective on ML. I even went as far as emailing professor Hardt about how one should understand fairness, because it surely wasn’t as clean as Linear Regression. His response was enlightening: “I strongly believe that ML is not about techniques. It's about concepts. I'm sure you could learn kNN or XGBoost in an hour. But the point of 189 is so that you understand how to think about the input and outputs to those methods. Hope you enjoyed the class.” You could go out there and learn every statistical learning algorithm there is, and that would probably make you an expert, but I have since started to balance the “nitty gritty” with the “big picture”, dissecting the algebra, but also spending time to dwell more on the effects of implementing a certain model. </p>
+<p>The second and final experience that has significantly shaped my perspective of AI/ML is my current research experience. I am an undergraduate researcher at the Berkeley Institute of Data Science, working to speed up the MRI acquisition process. How MRI works is by generating a magnetic field using a metal coil. The coil will excite the hydrogen atoms in our body, and that is what is measured, the spin of the hydrogen atoms. Currently, the classical techniques that have worked reasonably well requires finding a sparse signal domain that captures most of the information in the signal, and then using this to undersample during scanning. In short, classical techniques entails solving an optimization problem, one that ideally has a clean solution. That way, scans can be sped up, which is especially beneficial for infants. The different approach we are taking is using Recurrent Neural Networks in order to exploit the temporal features of MRI scan acquisition. The idea behind Recurrent Neural Networks is that they have memory, which aligns with the time dependent process of MRI. Performing this research had a steep learning curve though. Installing packages, learning the C development stack, getting familiar with the Bridges Supercomputer environment, and managing Anaconda environments, along with the 1Tb+ of data was new to me. No matter how well I “understood the concepts” or could recreate the theory and calculations outlined in papers, nothing else matters if the model doesn’t run because your GPU ran out of memory! </p>
+<p>ML/AI is an extremely diverse field, with many applications. One cannot just “understand the concepts” but not know how to put models into use, and one cannot just be a master at training models but unable to modify the code when a change in the inputs arrives. A balance must be achieved. Take neural networks for example. It is easy to get overly optimistic at the advances in speech recognition and computer vision, as it is widely understood that these ideas have been in place for decades. The reason for their current success is due to the advancements in hardware. This makes it easy for elitists and purists to overgeneralize. Take my convex optimization professor for example, I can’t tell you how many times he has said: “Neural Networks is just nonlinear optimization!”, or “ML is just backpropagation!”. While there is a lot of truth in these sentiments, there is are a lot of shortcomings in a completely theoretical treatment of Neural Networks. Some empirical results are just unexplainable with current technologies. </p>
+<p>The future of AI is a balancing act. In order for the field to advance, there must be theoretical models developed that push the feasibility of modern technology. But there also must be an industry standard foundation for models that involve humans, with fairness and safety being the foremost issues. This will certainly be a challenge, and perhaps even impossible with all the proprietary codebases. But to maintain progress in this exciting technology, there must be a balance. </p>
+    </div>
+
+    <div class="w3-container">
+      <p>
+
+      </p>
+    </div>
+  </div>
+
+
+  <!-- Blog entry -->
+  <hr>
+<!-- END BLOG ENTRIES -->
+</div>
+
+<!-- Introduction menu -->
+<div class="w3-col l4">
+  <!-- About Card -->
+  <div class="w3-card w3-margin w3-margin-top">
+  <img src="kalman_filter.png" style="width:100%">
+  <p><button onclick="location.href='blog.html'" class="w3-button w3-padding-large w3-white w3-border"><b>Back to blog home»</b></button></p>
+  </div><hr>
+  
+  
+  <hr> 
+ 
+  
+  
+<!-- END Introduction Menu -->
+</div>
+
+<!-- END GRID -->
+</div><br>
+
+<!-- END w3-content -->
+</div>
+
+</body>
+</html>
